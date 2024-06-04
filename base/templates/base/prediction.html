@@ -1,0 +1,80 @@
+{% extends 'base/home.html' %}
+
+{% block content %}
+
+<section class="section main-section">
+    <div class="card mb-6">
+        <header class="card-header">
+            <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                House Price Predictor
+            </p>
+        </header>
+        <div class="card-content">
+            <form method="post" action="{% url 'predict_price' %}">
+
+                {% csrf_token %}
+
+                <div class="field">
+                    <label class="label">Complete Values Below</label>
+                    <div class="field-body">
+                        <div class="field">
+                            <span >Enter No. of Bedrooms</span>
+                                <input class="input" type="number" name="bedrooms" placeholder="Bedrooms in the house" min="0">
+
+                        </div>
+
+                        <div class="field">
+                                 <span >Enter Area Of Stand</span>
+                                <input class="input" type="number" name="area_sqm" placeholder="Area in Square-Meters" min="0">
+                                
+                        </div>
+
+                        <div class="field">
+                            <span >Enter No. of Shops</span>
+                                <input class="input" type="number" name="malls" placeholder="Shops nearby" min="0" max="5">
+                       
+                        </div>
+
+                        <div class="field">
+                            <span >Enter Location</span>
+                                <input class="input" type="number" name="location"
+                                       placeholder="Location...1= Rural, 0= Urban" min="0" max="1">
+
+                        </div>
+
+                        <div class="field">
+                            <span >Enter Price</span>
+                                <input class="input" type="number" name="price" placeholder="Price of Stand" min="0">
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="field grouped">
+                    <div class="control">
+                        <button type="submit" class="button green">
+                            Predict
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br>
+        <div class="field">
+            <label class="label"> 
+                {% if predicted_price %}
+                    <p>Predicted Price: ${{ predicted_price }}</p>
+                </div>
+                {% endif %} </label>
+            </div>
+          </div>
+
+    </div>
+</section>
+
+
+
+{% endblock %}

@@ -100,6 +100,9 @@ def predict_price(request):
 def houses(request):
     return render(request, 'base/houses.html')
 
+def newsBlogs(request):
+    return render(request, 'base/news.html')
+
 
 class HouseCreateView(CreateView,ListView):
     model = House

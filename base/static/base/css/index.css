@@ -1,0 +1,23 @@
+.row {
+    gap: 10px; /* Adds spacing between cards */
+}
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a slight shadow for better aesthetics */
+    border-radius: 8px; /* Slightly rounded corners */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+    padding: 50px;
+    grid-gap: 1rem;
+
+}
+
+.blog-detail span{
+    color: rgb(6, 69, 245);
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.blog-detail p{
+    text-align: left;
+}

@@ -3,15 +3,16 @@ import joblib
 import numpy as np
 from django.shortcuts import render
 from .forms import PricePredictionForm
+from django.core.paginator import Paginator
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
-from django.views.generic import  CreateView, ListView
+from django.views.generic import  CreateView, ListView, DetailView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegisterForm
-from .models import House
+from .models import House, Blog
 
 def loginView(request):
 
@@ -100,9 +101,6 @@ def predict_price(request):
 def houses(request):
     return render(request, 'base/houses.html')
 
-def newsBlogs(request):
-    return render(request, 'base/news.html')
-
 
 class HouseCreateView(CreateView,ListView):
     model = House
@@ -112,3 +110,18 @@ class HouseCreateView(CreateView,ListView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class NewsListView(ListView):
+    model= Blog
+    template_name = 'base/news.html'
+    fields = '__all__'
+    context_object_name = 'news'
+    paginate_by = 6
+
+class NewsDetailView(DetailView):
+    model = Blog
+    template_name = 'base/news-detail.html'
+    context_object_name = 'news'
+
+
+

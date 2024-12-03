@@ -10,12 +10,15 @@
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="{% static 'base/css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/index.css' %}">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
   <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00b4b6"/>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
   <meta name="description" content="Admin One - free Tailwind dashboard">
 
   <meta property="og:url" content="https://justboil.github.io/admin-one-tailwind/">
@@ -33,6 +36,7 @@
   <meta property="twitter:image:src" content="https://justboil.me/images/one-tailwind/repository-preview-hi-res.png">
   <meta property="twitter:image:width" content="1920">
   <meta property="twitter:image:height" content="960">
+  
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130795909-1"></script>
@@ -46,29 +50,22 @@
 </head>
 <body>
 
-<div id="app">
+<div id="app" style="height: 40px;">
 
-<nav id="navbar-main" class="navbar is-fixed-top">
-  <div class="navbar-brand">
-    <a class="navbar-item mobile-aside-button">
-      <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
-    </a>
-    <div class="navbar-item">
-      <div class="control"><input placeholder="Search everywhere..." class="input"></div>
-    </div>
-  </div>
+<nav id="navbar-main" class="navbar is-fixed-top" style="align-items: center;">
+  <form class="form-inline" style="align-items: center; margin-left: 30px; padding-left: 30px ;">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:#fff;background-color: rgb(2, 21, 189);">Search</button>
+  </form>
   <div class="navbar-brand is-right">
     <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
       <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
     </a>
   </div>
-  <div class="navbar-menu" id="navbar-menu">
+  <div class="navbar-menu" id="navbar-menu" style="margin-bottom: 50px;">
     <div class="navbar-end">
       <div class="navbar-item dropdown has-divider has-user-avatar">
         <a class="navbar-link">
-          <div class="user-avatar">
-            
-          </div>
           <div class="is-user-name"><span>{{user.username}}</span></div>
           <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
         </a>
@@ -92,10 +89,12 @@
   </div>
 </nav>
 
+
+
 <aside class="aside is-placed-left is-expanded">
   <div class="aside-tools">
     <div>
-     <a href="{% url 'home' %}">House <b class="font-black">Predictor</b></a> 
+     <a href="{% url 'home' %}" style="text-decoration: none; color: #f8f9fa;">House <b class="font-black">Predictor</b></a> 
     </div>
   </div>
   <div class="menu is-menu-main">
@@ -103,22 +102,22 @@
 
     
   
-    <ul class="menu-list">  
+    <ul class="menu-list" >  
         {% if request.user.is_authenticated %}
       <li class="--set-active-tables-html">
-        <a href="{% url 'predict_price' %}">
+        <a href="{% url 'predict_price' %}"style="text-decoration: none;">
           <span class="icon"><i class="mdi mdi-table"></i></span>
           <span class="menu-item-label">Prediction</span>
         </a>
       </li>
       <li class="--set-active-tables-html">
-        <a href="{% url 'news' %}">
+        <a href="{% url 'news' %}"style="text-decoration: none;">
           <span class="icon"><i class="mdi mdi-table"></i></span>
           <span class="menu-item-label">News</span>
         </a>
       </li>
       <li class="--set-active-forms-html">
-        <a href="{% url 'logout' %}">
+        <a href="{% url 'logout' %}"style="text-decoration: none;">
           <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
           <span class="menu-item-label">Logout</span>
         </a>
@@ -127,13 +126,13 @@
                 {% else %}
 
       <li class="--set-active-profile-html">
-        <a href="{% url 'register' %}">
+        <a href="{% url 'register' %}" style="text-decoration: none;">
           <span class="icon"><i class="mdi mdi-account-circle"></i></span>
           <span class="menu-item-label">Register</span>
         </a>
       </li>
       <li>
-        <a href="{% url 'login'%}">
+        <a href="{% url 'login'%}" style="text-decoration: none;">
           <span class="icon"><i class="mdi mdi-lock"></i></span>
           <span class="menu-item-label">Login</span>
         </a>
@@ -146,43 +145,43 @@
 
 
 
-{% block content%}
 
-{% endblock %}
-
-
-{% if request.user.is_authenticated %}
-<section class="is-hero-bar">
+{% if request.user.is_authenticated == False %}
+<!-- <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
       Dashboard
     </h1>
     <button class="button light">Button</button>
   </div>
-</section>
+</section> -->
+
+{% endif %}
+ 
+
+    {% block content%}
+
+    {% endblock %}
+
+  </div>
 
 
-  {% endif %}
 
 
-  <div class="card-content">
 
+  <footer class="footer" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; padding: 10px 20px; box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div>
+                © 2021, Verg.The
+            </div>
+            <div>
+                <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+                <a href="#" class="text-decoration-none">Terms of Service</a>
+            </div>
+        </div>
     </div>
-
-      </div>
-
-
-
-
-
-
-<footer class="footer">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
-    <div class="flex items-center justify-start space-x-3">
-      <div>
-        © 2021, Verg.The
-      </div>
-    </div>
+</footer>
 
 
   

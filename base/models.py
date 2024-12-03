@@ -14,3 +14,13 @@ class House(models.Model):
 
     def __str__(self):
 	    return self.title
+
+class Blog(models.Model):
+    author = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    content = models.TextField()
+    created = models.DateField(default=timezone.now)
+
+    def __str__(self):
+         return self.name
+

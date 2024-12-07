@@ -1,0 +1,16 @@
+{% extends 'base/home.html'%}
+
+{% block content %}
+<div class="container">
+
+    <div class="delete-section" style=" align-items: center; justify-content: center; padding: 20px; margin-top: 50px; border: 0.5px solid black ;">
+        <h2>Confirm Deletion</h2>
+        <p>Are you sure you want to delete the blog "{{ news.name }}"?</p>
+        <form method="post" >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'news' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

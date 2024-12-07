@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import (HouseCreateView, NewsListView, NewsDetailView)
+from .views import (HouseCreateView, NewsListView, NewsDetailView, NewsCreateView, NewsDeleteView)
 
 
 urlpatterns = [
@@ -14,6 +14,6 @@ urlpatterns = [
     path('house_create/', HouseCreateView.as_view(), name="house_create"),
     path('news/', NewsListView.as_view(), name="news"),
     path('news/<str:pk>/', NewsDetailView.as_view(), name="news-detail"),
-
-
+    path('news/add/',NewsCreateView.as_view(), name="news-add" ),
+    path('news/<pk>/delete', NewsDeleteView.as_view(), name="news-delete"),
 ]

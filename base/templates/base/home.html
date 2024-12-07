@@ -9,8 +9,8 @@
   <title>Dashboard - House Evaluation</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="{% static 'base/css/main.css' %}">
-  <link rel="stylesheet" href="{% static 'base/css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/main.css' %}"/>
+  <link rel="stylesheet" href="{% static 'base/css/index.css' %}"/>
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -50,10 +50,10 @@
 </head>
 <body>
 
-<div id="app" style="height: 40px;">
-
-<nav id="navbar-main" class="navbar is-fixed-top" style="align-items: center;">
-  <form class="form-inline" style="align-items: center; margin-left: 30px; padding-left: 30px ;">
+<div id="app" style="height: auto;">
+  <div class="navbar-brand" style="height: 100px;">
+<nav id="navbar-main" class="navbar is-fixed-top" style="align-items: center; justify-content: center; position: fixed; top: 0;">
+  <form class="form-inline" style="margin-bottom: 10px;">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:#fff;background-color: rgb(2, 21, 189);">Search</button>
   </form>
@@ -62,7 +62,7 @@
       <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
     </a>
   </div>
-  <div class="navbar-menu" id="navbar-menu" style="margin-bottom: 50px;">
+  <div class="navbar-menu" id="navbar-menu">
     <div class="navbar-end">
       <div class="navbar-item dropdown has-divider has-user-avatar">
         <a class="navbar-link">
@@ -89,6 +89,8 @@
   </div>
 </nav>
 
+</div>
+
 
 
 <aside class="aside is-placed-left is-expanded">
@@ -106,7 +108,7 @@
         {% if request.user.is_authenticated %}
       <li class="--set-active-tables-html">
         <a href="{% url 'predict_price' %}"style="text-decoration: none;">
-          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="icon"><i class=" mdi mdi-chart-line"></i></span>
           <span class="menu-item-label">Prediction</span>
         </a>
       </li>

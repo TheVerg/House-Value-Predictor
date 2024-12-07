@@ -2,7 +2,7 @@
 
 {% block content%}
 
-<div class="container">
+<div class="container" style="height: auto;">
 
     <div class="blog-detail" style="padding: 50px; margin-top: 50px; overflow: auto; border: 0.5px solid black ;">
         <h3><b>{{news.name}}</b></h3>
@@ -11,12 +11,18 @@
             <i><p><small>Written by</small> - <b>{{news.author}}</b></p></i>
         </span>
 
-        <p>{{news.content}}</p>
+        <p style="line-height: 1.5; margin: 10px;">{{news.content}}</p>
 
         <span>
             <i><small>{{news.created}}</small></i>
         </span>
-    
+
+        <div class="dlt-button" style="margin-top: 30px; margin-bottom: -30px;">
+            <a href="{% url 'news-delete' news.id %}" class="btn btn-primary">Delete</a>
+        </div>
+
+        
+        
     </div>
 
 </div>

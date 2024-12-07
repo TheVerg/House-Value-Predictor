@@ -2,12 +2,20 @@
 
 {% block content %}
 
-<section class="section main-section">
+<section class="section main-section" style="margin-top: 50px; margin-bottom: 50px; height: auto;">
     <div class="card mb-6">
         <header class="card-header">
             <p class="card-header-title">
                 <span class="icon"><i class="mdi mdi-ballot"></i></span>
                 House Price Predictor
+
+                <div class="field">
+                    <label class="label"> 
+                        {% if predicted_price %}
+                            <p>Predicted Price: ${{ predicted_price }}</p>
+                        
+                        {% endif %} </label>
+                    </div>
             </p>
         </header>
         <div class="card-content">
@@ -63,12 +71,6 @@
             </form>
         </div>
         <br>
-        <div class="field">
-            <label class="label"> 
-                {% if predicted_price %}
-                    <p>Predicted Price: ${{ predicted_price }}</p>
-                </div>
-                {% endif %} </label>
             </div>
           </div>
 

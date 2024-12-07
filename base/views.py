@@ -2,12 +2,13 @@ import os
 import joblib
 import numpy as np
 from django.shortcuts import render
+from django.urls import reverse
 from .forms import PricePredictionForm
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
-from django.views.generic import  CreateView, ListView, DetailView
+from django.views.generic import  CreateView, ListView, DetailView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -123,5 +124,22 @@ class NewsDetailView(DetailView):
     template_name = 'base/news-detail.html'
     context_object_name = 'news'
 
+class NewsCreateView(CreateView):
+    model = Blog
+    template_name = 'base/news-create.html'
+    fields = ['name', 'content', 'created']
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse('news') 
+
+class NewsDeleteView(DeleteView):
+    model = Blog
+    context_object_name = 'news'
+    template_name = 'base/confirm-news-delete.html'
+
+    def get_success_url(self):
+        return reverse('news')
